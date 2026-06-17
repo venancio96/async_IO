@@ -46,8 +46,8 @@ router.post("/",(req,res)=>{
     "lastName": req.query.lastName,
     "email": req.query.email,
     "DOB": req.query.DOB
-  })
-  res.send("the user" + req.query.firstName + "has been added");
+  });
+  res.send("the user " + req.query.firstName + " has been added");
   // curl --request POST 'localhost:5000/user?firstName=Jon&lastName=Lovato&email=jonlovato@theworld.com&DOB=10/10/1995'
   //curl localhost:5000/user/jonlovato@theworld.com
 });
@@ -56,8 +56,8 @@ router.post("/",(req,res)=>{
 // PUT request: Update the details of a user by email ID
 router.put("/:email", (req, res) => {
   const email = req.params.email;
-  let filtered_users = users.filter((user)=> user.email === email);
-  if(filtered_users >0)
+  let filtered_users = users.filter((user) => user.email === email);
+  if(filtered_users.length > 0)
   {
     let filtered_user = filtered_users[0];
     
@@ -66,7 +66,7 @@ router.put("/:email", (req, res) => {
     {
         filtered_user.DOB = DOB;
     }
-
+    /*
     let firstName = req.query.firstName;
     if(firstName)
     {
@@ -78,7 +78,7 @@ router.put("/:email", (req, res) => {
     {
         filtered_user.lastName = lastName;
     }
-
+    */
     //replace old user entry with updated user
     users = users.filter((user) => user.email != email);
     users.push(filtered_user);
@@ -109,4 +109,27 @@ router.get("/",(req,res)=>{
     //Send a JSON response containing the users array, formatted with an indentation of 4 spaces for readability
 res.send(JSON.stringify({users}, null, 4));
 });
+router.get("/lastName",(req,res)=>{
+    const lastName = req.params.lastName;
+    let filtered_lastName = users.filter((user) => user.lastName === lastName);
+    res.send(filtered_lastName);
+});
+// Function to convert a date string in the format "dd-mm-yyyy" to a Date object
+function getDateFromString(strDate) {
+    let [dd, mm, yyyy] = strDate.split('-');
+    return new Date(yyyy + "/" + mm + "/" + dd);
+}
+
+// Define a route handler for GET requests to the "/sort" endpoint
+router.get("/sort", (req, res) => {
+    // Sort the users array by DOB in ascending order
+    let sorted_users = users.sort(function(a, b) {
+        let d1 = getDateFromString(a.DOB);
+        let d2 = getDateFromString(b.DOB);
+        return d1 - d2;
+    });
+    // Send the sorted_users array as the response to the client
+    res.send(sorted_users);
+});
+
 module.exports=router;
