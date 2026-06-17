@@ -1,3 +1,6 @@
 [submodule "crud/mxpfu-nodejsLabs"]
 	path = crud/mxpfu-nodejsLabs
 	url = https://github.com/ibm-developer-skills-network/mxpfu-nodejsLabs.git
+[submodule "crud/mxpfunodejsLbas"]
+	path = crud/mxpfunodejsLbas
+	url = https://github.com/ibm-developer-skills-network/mxpfu-nodejsLabs.git
