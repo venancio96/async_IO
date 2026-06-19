@@ -7,3 +7,6 @@
 [submodule "expressServer/extraRepo/lkpho-Cloud-applications-with-Node.js-and-React"]
 	path = expressServer/extraRepo/lkpho-Cloud-applications-with-Node.js-and-React
 	url = https://github.com/ibm-developer-skills-network/lkpho-Cloud-applications-with-Node.js-and-React.git
+[submodule "expressServer/Repo/lkpho-Cloud-applications-with-Node.js-and-React"]
+	path = expressServer/Repo/lkpho-Cloud-applications-with-Node.js-and-React
+	url = https://github.com/ibm-developer-skills-network/lkpho-Cloud-applications-with-Node.js-and-React.git
